@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>獸醫助理的日常與挑戰</title>
+  <title>一起值班吧！體驗獸醫助理的一天</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
@@ -11,139 +11,73 @@
       font-family: 'Noto Sans TC', sans-serif;
     }
     .bg-clinic {
-      background-image: url('https://images.unsplash.com/photo-1588776814546-ec6f1d82b2b8');
+      background-image: url('https://images.unsplash.com/photo-1591488581950-76c2f5fe8c5b');
       background-size: cover;
       background-position: center;
+      filter: brightness(0.85); /* 提高背景亮度 */
     }
     .card {
       background-color: rgba(255, 255, 255, 0.85);
       border-radius: 1rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
+    h1 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+    button {
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body class="bg-clinic min-h-screen flex flex-col items-center py-10">
-  <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow mb-6">獸醫助理的日常與挑戰</h1>
+  <header class="text-center mb-10">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">一起值班吧！體驗獸醫助理的一天</h1>
+    <p class="text-white text-lg">代入獸醫助理的角色，探索他們日常面對的挑戰與決策</p>
+  </header>
 
   <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-    <!-- 互動 1：心理壓力檢測 -->
+    <!-- 互動一：緊急情況反應 -->
     <div class="card p-6">
-      <h2 class="text-xl font-semibold mb-2">互動一：心理壓力檢測</h2>
-      <p class="mb-4">根據工作經歷快速了解你目前的心理壓力指數。</p>
-      <form id="stressForm" class="space-y-2">
-        <label class="block">每天平均工作時數：<input type="number" name="hours" class="border p-1 w-full"></label>
-        <label class="block">你是否經常聽到動物哀嚎聲？<select name="noise" class="border p-1 w-full">
-          <option value="yes">是</option><option value="no">否</option></select></label>
-        <label class="block">你是否常感覺自己沒時間喘息？<select name="rest" class="border p-1 w-full">
-          <option value="yes">是</option><option value="no">否</option></select></label>
-        <button type="button" onclick="calculateStress()" class="bg-red-500 text-white px-4 py-2 rounded">提交結果</button>
-      </form>
-      <p id="stressResult" class="mt-3 font-bold"></p>
+      <h2 class="text-xl font-semibold mb-4">互動一：處理緊急情況</h2>
+      <p class="mb-4">你的獸醫診所突然接到一名狗狗中毒的急診病人，你該如何處置？</p>
+      <button onclick="alert('請立即向醫生報告並準備解毒藥物。')" class="bg-blue-600 text-white px-4 py-2 rounded-md w-full hover:bg-blue-700">處理急診</button>
     </div>
 
-    <!-- 互動 2：值班模擬選擇題 -->
+    <!-- 互動二：診斷病情 -->
     <div class="card p-6">
-      <h2 class="text-xl font-semibold mb-2">互動二：值班模擬</h2>
-      <p class="mb-4">以下哪一個你會優先處理？</p>
-      <form id="shiftQuiz">
-        <label class="block mb-2">
-          <input type="radio" name="priority" value="A"> A. 協助醫師進行貓的手術
-        </label>
-        <label class="block mb-2">
-          <input type="radio" name="priority" value="B"> B. 安撫剛送來的狗狗主人
-        </label>
-        <label class="block mb-2">
-          <input type="radio" name="priority" value="C"> C. 打掃地上剛吐的嘔吐物
-        </label>
-        <button type="button" onclick="showPriority()" class="bg-blue-600 text-white px-4 py-2 mt-2 rounded">查看建議</button>
-      </form>
-      <p id="priorityResult" class="mt-3 font-bold"></p>
+      <h2 class="text-xl font-semibold mb-4">互動二：診斷病情</h2>
+      <p class="mb-4">一隻貓咪來到診所，主人抱怨它最近一直嘔吐。你認為它有什麼病症？</p>
+      <button onclick="alert('可能是消化不良、腸胃炎或食物過敏，建議進一步檢查。')" class="bg-green-600 text-white px-4 py-2 rounded-md w-full hover:bg-green-700">進行診斷</button>
     </div>
 
-    <!-- 互動 3：應徵挑戰模擬 -->
+    <!-- 互動三：藥物管理 -->
     <div class="card p-6">
-      <h2 class="text-xl font-semibold mb-2">互動三：應徵挑戰模擬</h2>
-      <p class="mb-4">回答以下問題，我們將模擬你是否能順利進入獸醫助理職場。</p>
-      <form id="interviewForm" class="space-y-2">
-        <label class="block">你是否能接受看到血液與傷口？<select name="blood" class="border p-1 w-full">
-          <option value="yes">可以</option><option value="no">不行</option></select></label>
-        <label class="block">你是否願意輪值假日班？<select name="shift" class="border p-1 w-full">
-          <option value="yes">願意</option><option value="no">不願意</option></select></label>
-        <button type="button" onclick="showInterviewResult()" class="bg-green-600 text-white px-4 py-2 rounded">模擬結果</button>
-      </form>
-      <p id="interviewResult" class="mt-3 font-bold"></p>
+      <h2 class="text-xl font-semibold mb-4">互動三：藥物管理</h2>
+      <p class="mb-4">有客人要求領藥，你該如何確保藥品管理的準確性？</p>
+      <button onclick="alert('確認處方單後，準確發放藥物並提醒顧客使用方法。')" class="bg-yellow-600 text-white px-4 py-2 rounded-md w-full hover:bg-yellow-700">藥物管理</button>
     </div>
 
-    <!-- 互動 4：情緒對話牆 -->
+    <!-- 互動四：健康檢查 -->
     <div class="card p-6">
-      <h2 class="text-xl font-semibold mb-2">互動四：情緒對話牆</h2>
-      <p class="mb-4">留下你對這份工作的真實心聲。</p>
-      <textarea id="emotionInput" class="border p-2 w-full mb-2" placeholder="寫下你的感受..."></textarea>
-      <button onclick="postEmotion()" class="bg-purple-600 text-white px-4 py-2 rounded">送出</button>
-      <ul id="emotionWall" class="mt-4 space-y-2 text-sm"></ul>
+      <h2 class="text-xl font-semibold mb-4">互動四：健康檢查</h2>
+      <p class="mb-4">你正在進行一隻小狗的例行健康檢查，發現有一些異常情況。你該如何反應？</p>
+      <button onclick="alert('建議進行進一步的診斷檢查，並向主人解釋發現的異常情況。')" class="bg-orange-600 text-white px-4 py-2 rounded-md w-full hover:bg-orange-700">健康檢查</button>
     </div>
 
-    <!-- 互動 5：困境圖說牆 -->
+    <!-- 互動五：術後照顧 -->
     <div class="card p-6">
-      <h2 class="text-xl font-semibold mb-2">互動五：困境圖說牆</h2>
-      <p class="mb-4">看圖說故事，點選圖片了解真實工作場景。</p>
-      <div class="grid grid-cols-2 gap-4">
-        <img src="https://images.unsplash.com/photo-1583337130417-3346a1b7a8ba" alt="忙碌工作" class="cursor-pointer" onclick="alert('這是繁忙手術後協助清潔的片刻，獸醫助理常需要獨自處理後勤工作。')">
-        <img src="https://images.unsplash.com/photo-1627596534290-1464e0ac2e24" alt="動物安樂死" class="cursor-pointer" onclick="alert('這是陪伴動物走到最後的瞬間。助理的心理壓力常來自與死亡共處。')">
-      </div>
+      <h2 class="text-xl font-semibold mb-4">互動五：術後照顧</h2>
+      <p class="mb-4">一隻狗狗剛接受了手術，現在正在術後恢復。你該如何照顧牠？</p>
+      <button onclick="alert('定期檢查傷口，確保狗狗的飲食和休息，並觀察其康復情況。')" class="bg-red-600 text-white px-4 py-2 rounded-md w-full hover:bg-red-700">術後照顧</button>
     </div>
   </div>
 
   <script>
-    function calculateStress() {
-      const form = document.forms['stressForm'];
-      const hours = parseInt(form.hours.value);
-      const noise = form.noise.value;
-      const rest = form.rest.value;
-      let score = hours > 10 ? 2 : 0;
-      if (noise === 'yes') score++;
-      if (rest === 'yes') score++;
-      let result;
-      if (score >= 3) result = '壓力過高，建議尋求協助';
-      else if (score === 2) result = '中等壓力，需適度調整';
-      else result = '壓力狀況尚可，請持續關注自我狀態';
-      document.getElementById('stressResult').textContent = result;
-    }
-
-    function showPriority() {
-      const value = document.querySelector('input[name="priority"]:checked');
-      if (!value) {
-        document.getElementById('priorityResult').textContent = '請先選擇一項';
-        return;
-      }
-      let message = '';
-      switch (value.value) {
-        case 'A': message = '正確！醫療行為應優先處理。'; break;
-        case 'B': message = '不錯，但醫療優先於情緒安撫。'; break;
-        case 'C': message = '重要但可延後，醫療處置為第一優先。'; break;
-      }
-      document.getElementById('priorityResult').textContent = message;
-    }
-
-    function showInterviewResult() {
-      const form = document.forms['interviewForm'];
-      const blood = form.blood.value;
-      const shift = form.shift.value;
-      if (blood === 'yes' && shift === 'yes') {
-        document.getElementById('interviewResult').textContent = '你具備應徵獸醫助理的基本心理素質！';
-      } else {
-        document.getElementById('interviewResult').textContent = '你可能需要再思考是否適合這份工作。';
-      }
-    }
-
-    function postEmotion() {
-      const text = document.getElementById('emotionInput').value;
-      if (text.trim() === '') return;
-      const li = document.createElement('li');
-      li.textContent = text;
-      document.getElementById('emotionWall').appendChild(li);
-      document.getElementById('emotionInput').value = '';
-    }
+    // 互動按鈕的功能已經設定在 alert 中
   </script>
 </body>
 </html>
