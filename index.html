@@ -3,142 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lulu的生活日記</title>
+  <title>獸醫助理的日常與挑戰</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Courier New', Courier, monospace;
-      background-color: #fdf6e3;
-      margin: 0;
-      padding: 0;
-      color: #4b3621;
+      background: #fefcf9;
+      font-family: 'Noto Sans TC', sans-serif;
     }
-    header {
-      background-color: #8b5e3c;
-      padding: 30px;
-      text-align: center;
-      border-bottom: 5px double #d4a373;
+    .bg-clinic {
+      background-image: url('https://images.unsplash.com/photo-1588776814546-ec6f1d82b2b8');
+      background-size: cover;
+      background-position: center;
     }
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-      color: #fff7e6;
-      text-shadow: 2px 2px #5c3a21;
-    }
-    .top-link {
-      text-align: center;
-      background-color: #fcebd5;
-      padding: 10px;
-    }
-    .top-link a {
-      color: #8b5e3c;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      border: 2px solid #8b5e3c;
-      padding: 6px 12px;
-      border-radius: 5px;
-      background-color: #fffdf5;
-    }
-    .top-link a:hover {
-      background-color: #ffe7ba;
-    }
-    nav {
-      background-color: #d4a373;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 15px;
-      border-bottom: 3px solid #8b5e3c;
-    }
-    nav a {
-      margin: 0 20px;
-      color: #fff7e6;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .post {
-      background: #fffdf5;
-      border: 2px solid #8b5e3c;
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 40px;
-      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    }
-    .post h2 {
-      font-family: 'Georgia', serif;
-      color: #5c3a21;
-    }
-    .post img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    footer {
-      background-color: #8b5e3c;
-      text-align: center;
-      padding: 20px;
-      color: #fff7e6;
-      font-size: 0.9em;
-      border-top: 5px double #d4a373;
+    .card {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
   </style>
 </head>
-<body>
-  <div class="top-link">
-    <a href="test.htm">➤ 點我看更多分享</a>
+<body class="bg-clinic min-h-screen flex flex-col items-center py-10">
+  <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow mb-6">獸醫助理的日常與挑戰</h1>
+
+  <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+    <!-- 互動 1：心理壓力檢測 -->
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold mb-2">互動一：心理壓力檢測</h2>
+      <p class="mb-4">根據工作經歷快速了解你目前的心理壓力指數。</p>
+      <form id="stressForm" class="space-y-2">
+        <label class="block">每天平均工作時數：<input type="number" name="hours" class="border p-1 w-full"></label>
+        <label class="block">你是否經常聽到動物哀嚎聲？<select name="noise" class="border p-1 w-full">
+          <option value="yes">是</option><option value="no">否</option></select></label>
+        <label class="block">你是否常感覺自己沒時間喘息？<select name="rest" class="border p-1 w-full">
+          <option value="yes">是</option><option value="no">否</option></select></label>
+        <button type="button" onclick="calculateStress()" class="bg-red-500 text-white px-4 py-2 rounded">提交結果</button>
+      </form>
+      <p id="stressResult" class="mt-3 font-bold"></p>
+    </div>
+
+    <!-- 互動 2：值班模擬選擇題 -->
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold mb-2">互動二：值班模擬</h2>
+      <p class="mb-4">以下哪一個你會優先處理？</p>
+      <form id="shiftQuiz">
+        <label class="block mb-2">
+          <input type="radio" name="priority" value="A"> A. 協助醫師進行貓的手術
+        </label>
+        <label class="block mb-2">
+          <input type="radio" name="priority" value="B"> B. 安撫剛送來的狗狗主人
+        </label>
+        <label class="block mb-2">
+          <input type="radio" name="priority" value="C"> C. 打掃地上剛吐的嘔吐物
+        </label>
+        <button type="button" onclick="showPriority()" class="bg-blue-600 text-white px-4 py-2 mt-2 rounded">查看建議</button>
+      </form>
+      <p id="priorityResult" class="mt-3 font-bold"></p>
+    </div>
+
+    <!-- 互動 3：應徵挑戰模擬 -->
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold mb-2">互動三：應徵挑戰模擬</h2>
+      <p class="mb-4">回答以下問題，我們將模擬你是否能順利進入獸醫助理職場。</p>
+      <form id="interviewForm" class="space-y-2">
+        <label class="block">你是否能接受看到血液與傷口？<select name="blood" class="border p-1 w-full">
+          <option value="yes">可以</option><option value="no">不行</option></select></label>
+        <label class="block">你是否願意輪值假日班？<select name="shift" class="border p-1 w-full">
+          <option value="yes">願意</option><option value="no">不願意</option></select></label>
+        <button type="button" onclick="showInterviewResult()" class="bg-green-600 text-white px-4 py-2 rounded">模擬結果</button>
+      </form>
+      <p id="interviewResult" class="mt-3 font-bold"></p>
+    </div>
+
+    <!-- 互動 4：情緒對話牆 -->
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold mb-2">互動四：情緒對話牆</h2>
+      <p class="mb-4">留下你對這份工作的真實心聲。</p>
+      <textarea id="emotionInput" class="border p-2 w-full mb-2" placeholder="寫下你的感受..."></textarea>
+      <button onclick="postEmotion()" class="bg-purple-600 text-white px-4 py-2 rounded">送出</button>
+      <ul id="emotionWall" class="mt-4 space-y-2 text-sm"></ul>
+    </div>
+
+    <!-- 互動 5：困境圖說牆 -->
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold mb-2">互動五：困境圖說牆</h2>
+      <p class="mb-4">看圖說故事，點選圖片了解真實工作場景。</p>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1583337130417-3346a1b7a8ba" alt="忙碌工作" class="cursor-pointer" onclick="alert('這是繁忙手術後協助清潔的片刻，獸醫助理常需要獨自處理後勤工作。')">
+        <img src="https://images.unsplash.com/photo-1627596534290-1464e0ac2e24" alt="動物安樂死" class="cursor-pointer" onclick="alert('這是陪伴動物走到最後的瞬間。助理的心理壓力常來自與死亡共處。')">
+      </div>
+    </div>
   </div>
-  <header>
-    <h1>🐾 Lulu的生活日記 🐾</h1>
-  </header>
-  <nav>
-    <a href="#about">關於我們</a>
-    <a href="#diary">生活記事</a>
-    <a href="#gallery">照片集</a>
-    <a href="test.htm">更多分享</a>
-  </nav>
 
-  <section id="about">
-    <div class="post">
-      <h2>關於我們</h2>
-      <p>大家好，我是偌甯，這是我和我最親愛的小狗Lulu的生活小天地。我們喜歡一起散步、旅行，也會一起懶懶地窩在沙發上看書。希望透過這個網站記錄我們的點滴，也和大家分享我們的快樂時光！</p>
-    </div>
-  </section>
+  <script>
+    function calculateStress() {
+      const form = document.forms['stressForm'];
+      const hours = parseInt(form.hours.value);
+      const noise = form.noise.value;
+      const rest = form.rest.value;
+      let score = hours > 10 ? 2 : 0;
+      if (noise === 'yes') score++;
+      if (rest === 'yes') score++;
+      let result;
+      if (score >= 3) result = '壓力過高，建議尋求協助';
+      else if (score === 2) result = '中等壓力，需適度調整';
+      else result = '壓力狀況尚可，請持續關注自我狀態';
+      document.getElementById('stressResult').textContent = result;
+    }
 
-  <section id="diary">
-    <div class="post">
-      <h2>2025/04/11 今天的散步小冒險</h2>
-      <p>今天天氣超好，我和Lulu一起去公園散步。她一看到松鼠就興奮地想衝過去，還交到了一隻新的狗狗朋友叫Momo！</p>
-      <img src="lulu_walk.jpg" alt="Lulu在公園裡開心地奔跑">
-    </div>
+    function showPriority() {
+      const value = document.querySelector('input[name="priority"]:checked');
+      if (!value) {
+        document.getElementById('priorityResult').textContent = '請先選擇一項';
+        return;
+      }
+      let message = '';
+      switch (value.value) {
+        case 'A': message = '正確！醫療行為應優先處理。'; break;
+        case 'B': message = '不錯，但醫療優先於情緒安撫。'; break;
+        case 'C': message = '重要但可延後，醫療處置為第一優先。'; break;
+      }
+      document.getElementById('priorityResult').textContent = message;
+    }
 
-    <div class="post">
-      <h2>2025/04/10 懶洋洋的一天</h2>
-      <p>今天我們都很懶，Lulu一整天都窩在我腿上睡覺。我讀了幾頁小說，也覺得好幸福～</p>
-      <img src="lulu_sleep.jpg" alt="Lulu躺在沙發上睡覺">
-    </div>
-  </section>
+    function showInterviewResult() {
+      const form = document.forms['interviewForm'];
+      const blood = form.blood.value;
+      const shift = form.shift.value;
+      if (blood === 'yes' && shift === 'yes') {
+        document.getElementById('interviewResult').textContent = '你具備應徵獸醫助理的基本心理素質！';
+      } else {
+        document.getElementById('interviewResult').textContent = '你可能需要再思考是否適合這份工作。';
+      }
+    }
 
-  <section id="gallery">
-    <div class="post">
-      <h2>照片集</h2>
-      <p>更多我們的快樂時光：</p>
-      <img src="lulu_1.jpg" alt="Lulu對著鏡頭笑">
-      <img src="lulu_2.jpg" alt="Lulu戴著小帽子">
-      <img src="lulu_3.jpg" alt="我和Lulu一起自拍">
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 偌甯 & Lulu | 用愛記錄每一天</p>
-  </footer>
+    function postEmotion() {
+      const text = document.getElementById('emotionInput').value;
+      if (text.trim() === '') return;
+      const li = document.createElement('li');
+      li.textContent = text;
+      document.getElementById('emotionWall').appendChild(li);
+      document.getElementById('emotionInput').value = '';
+    }
+  </script>
 </body>
 </html>
